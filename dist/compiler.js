@@ -161,12 +161,6 @@
 
   var
 
-    BOOL_ATTRS = _regEx(
-      '^(?:disabled|checked|readonly|required|allowfullscreen|auto(?:focus|play)|' +
-      'compact|controls|default|formnovalidate|hidden|ismap|itemscope|loop|' +
-      'multiple|muted|no(?:resize|shade|validate|wrap)?|open|reversed|seamless|' +
-      'selected|sortable|truespeed|typemustmatch)$'),
-
     RIOT_ATTRS = ['style', 'src', 'd'],
 
     VOID_TAGS  = /^(?:input|img|br|wbr|hr|area|base|col|embed|keygen|link|meta|param|source|track)$/,
@@ -232,14 +226,9 @@
         if (k === 'type' && v.toLowerCase() === '"number"') {
           v = DQ + _bp[0] + "'number'" + _bp[1] + DQ
         }
-        else if (/\u0001\d/.test(v)) {
+        else if (/\u0001\d/.test(v) && ~RIOT_ATTRS.indexOf(k)) {
 
-          if (BOOL_ATTRS.test(k)) {
-            k = '__' + k
-          }
-          else if (~RIOT_ATTRS.indexOf(k)) {
-            k = 'riot-' + k
-          }
+          k = 'riot-' + k
         }
 
         list.push(k + '=' + v)

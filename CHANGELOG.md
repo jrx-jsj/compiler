@@ -2,6 +2,7 @@
 
 ## v2.3.14
 
+- The prefix `__` for boolean attributes is not used anymore. This IE8 hack and it is not neccessary for current supported versions.
 - Option `exclude` for ignore parts of the tag. This is an array with one or more of 'html', 'css', 'attribs', 'js'.
 - Removed `inert` from the boolean attributes list, this html5 attribute was dropped from the specs.
 - Fixed normalization of root attributes, was not working as expected. Example updated.
